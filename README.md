@@ -14,7 +14,7 @@ $ cat /etc/default/grub | grep GRUB_DEFAULT
 
 ### `bootwindows.sh`
 Find Windows installation and boot to it.  
-__Designed to be used in single-windows-installed environment!__ On system with __multiple Windows installed__ or __multiple boot entries__ that contain "Windows" in its name, this script may not work as expected.
+__Designed to be used in _single Windows_ installed environment!__ On system with __multiple Windows installed__ or __multiple boot entries__ whose name starts with "Windows", this script may not work as expected.
 
 ### `bootwindows.desktop`
 Desktop icon entry for `/usr/bin/bootwindows.sh`.  
