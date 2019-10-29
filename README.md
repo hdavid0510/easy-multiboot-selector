@@ -10,7 +10,7 @@ $ cat /etc/default/grub | grep GRUB_DEFAULT
 + Copy script file under `/usr/bin`, then script can be called from everywhere; not only in GUI desktop environment, but also CLI environment(SSH access, ...). Use `*.desktop file` in GUI environment for quick use!
 
 
-## Files included
+## `bootwindows.*` files
 
 ### `bootwindows.sh`
 Find Windows installation and boot to it.  
@@ -23,10 +23,14 @@ Activate this entry inside application menu with:
 $ cp bootwindows.desktop ~/.local/share/applications/
 ```
 
-## To use this script for other OS boot
+## `bootubuntu1604.*` files
+This is for side-by-side ubuntu installation (multiple ubuntu setup). __Set and use just like `bootwindows.*` files__.  
+__Note:__ boot entry name should be __`"Ubuntu 16.04"`__, __NOT just `"Ubuntu"`__!
+
+## For other OS boot entry
 To boot to other system than windows,
 1. Just modify `NAME="Windows"` in `bootwindows.sh` to other system name.
 2. rename this file and copy under `/usr/bin`.
 3. That should work just as `bootwindows.sh`.
 
-If desktop entry is needed, edit `bootwindows.desktop` file to point the script file you just edited, and locate it under `~/.local/share/applications/`.
+If desktop entry is needed, edit `bootwindows.desktop` file to point the script file you just edited, and locate it under `~/.local/share/applications/`.  

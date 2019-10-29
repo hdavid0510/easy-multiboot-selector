@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Boot to Ubuntu 16.04
+Keywords=ubuntu;boot;
+TryExec=gnome-terminal
+Exec=x-terminal-emulator -e "bootubuntu1604"
+Type=Application
+StartupNotify=true
+Actions=New
+Terminal=false
+Icon=ubuntu-logo-icon
