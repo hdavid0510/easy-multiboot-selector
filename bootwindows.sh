@@ -6,20 +6,35 @@
 NAME="Windows"
 
 SUDO=''
-if [ "$(id -u)" != "0" ] || sudo -n true 2>/dev/null;  then
-	if [ -z "$DISPLAY" ]; then
-		SUDO='sudo'
-	else
-		SUDO='pkexec'
-	fi
-fi
 ENTRY_TITLE=`grep -i '^menuentry "'"$NAME" /boot/grub/grub.cfg|head -n 1|cut -d"'" -f2`
 
-echo -e "\e[93mRebooting to $NAME!\e[0m"
-echo "entry: $ENTRY_TITLE"
-$SUDO grub-reboot "$ENTRY_TITLE"
-if [ $? -eq 0 ]; then
-	$SUDO reboot
+#Terminal(Non-graphical) environment
+if [ -z "$DISPLAY" ]; then 
+
+	# Alert reboot
+	echo -e "\e[93mRebooting to $NAME!\e[0m"
+	echo "entry: $ENTRY_TITLE"
+
+	# Check if current user is already ROOT
+	if [ "$(id -u)" != "0" ]; then SUDO='sudo'; fi
+
+	# Set reboot target
+	$SUDO grub-reboot "$ENTRY_TITLE"
+
+	# Abort if reboot target failed
+	if [ $? -eq 0 ]; then
+		$SUDO reboot
+	else
+		echo "Reboot interrupted!"
+	fi
+
+#Graphical environment
 else
-	echo "Reboot interrupted!"
+
+	# Check if current user is already ROOT
+	if [ "$(id -u)" != "0" ]; then SUDO='pkexec'; fi
+
+	# Set reboot target and reboot
+	exec $SUDO sh -c "grub-reboot '$ENTRY_TITLE' && reboot"
+
 fi
