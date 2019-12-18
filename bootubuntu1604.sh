@@ -17,4 +17,8 @@ ENTRY_TITLE=`grep -i '^menuentry "'"$NAME" /boot/grub/grub.cfg|head -n 1|cut -d"
 
 echo -e "\e[93mRebooting to $NAME!\e[0m (\"$ENTRY_TITLE\")"
 $SUDO grub-reboot "$ENTRY_TITLE"
-$SUDO reboot
+if [ $? -eq 0 ]; then
+	$SUDO reboot
+else
+	echo "Reboot interrupted!"
+fi
