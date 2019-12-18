@@ -15,7 +15,8 @@ if [ "$(id -u)" != "0" ] || sudo -n true 2>/dev/null;  then
 fi
 ENTRY_TITLE=`grep -i '^menuentry "'"$NAME" /boot/grub/grub.cfg|head -n 1|cut -d"'" -f2`
 
-echo -e "\e[93mRebooting to $NAME!\e[0m (\"$ENTRY_TITLE\")"
+echo -e "\e[93mRebooting to $NAME!\e[0m"
+echo "entry: $ENTRY_TITLE"
 $SUDO grub-reboot "$ENTRY_TITLE"
 if [ $? -eq 0 ]; then
 	$SUDO reboot
