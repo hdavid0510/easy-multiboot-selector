@@ -8,8 +8,8 @@ NAME="Ubuntu 16.04"
 SUDO=''
 ENTRY_TITLE=`grep -i '^menuentry "'"$NAME" /boot/grub/grub.cfg|head -n 1|cut -d"'" -f2`
 
-#Terminal(Non-graphical) environment
-if [ -z "$DISPLAY" ]; then 
+#Terminal(Non-graphical) environment OR already sudo-authenticated
+if [ -z "$DISPLAY" ] || sudo -n true 2>/dev/null ; then
 
 	# Alert reboot
 	echo -e "\e[93mRebooting to $NAME!\e[0m"
