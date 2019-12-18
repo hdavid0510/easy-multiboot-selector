@@ -2,11 +2,9 @@
 [Desktop Entry]
 Name=Boot to Windows
 Keywords=windows;boot;
-TryExec=gnome-terminal
-Exec=x-terminal-emulator -e "bootwindows "
+Exec=/usr/bin/bootwindows
 Type=Application
 StartupNotify=true
 Actions=New
 Terminal=false
-Icon[en_US]=wine
 Icon=wine

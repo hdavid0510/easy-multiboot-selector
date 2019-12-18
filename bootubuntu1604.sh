@@ -6,8 +6,12 @@
 NAME="Ubuntu 16.04"
 
 SUDO=''
-if [ "$(id -u)" != "0" ]; then
-    SUDO='sudo'
+if [ "$(id -u)" != "0" ] || sudo -n true 2>/dev/null;  then
+	if [ -z "$DISPLAY" ]; then
+		SUDO='sudo'
+	else
+		SUDO='pkexec'
+	fi
 fi
 ENTRY_TITLE=`grep -i '^menuentry "'"$NAME" /boot/grub/grub.cfg|head -n 1|cut -d"'" -f2`
 
