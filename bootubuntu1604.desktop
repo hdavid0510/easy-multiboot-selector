@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=Boot to Ubuntu 16.04
 Keywords=ubuntu;boot;
-Exec=/usr/bin/bootubuntu1604
+Exec=/usr/bin/boot2 "Ubuntu 16.04"
 Type=Application
 StartupNotify=true
 Actions=New

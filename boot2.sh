@@ -1,9 +1,13 @@
 #!/bin/bash
 
-# Change this to boot to other system. (e.g. "Ubuntu")
-# This text should be long enough to distinguish entry you want to boot.
-# For example, "Ubuntu" will not work properly if there is multiple boot entries starts with "Ubuntu".
-NAME="Ubuntu 16.04"
+# Parameter 1: Entry to boot next time. (e.g. "Ubuntu")
+# This should be long enough to distinguish entry you want to boot.
+# ex) $1="Ubuntu" won't work if there are multiple boot entries start with "Ubuntu".
+if [ -z "$1" ] ; then
+	echo Usage: $0 ENTRY
+	exit 1;
+fi
+NAME=$1
 
 SUDO=''
 ENTRY_TITLE=`grep -i '^menuentry "'"$NAME" /boot/grub/grub.cfg|head -n 1|cut -d"'" -f2`
@@ -35,6 +39,6 @@ else
 	if [ "$(id -u)" != "0" ]; then SUDO='pkexec'; fi
 
 	# Set reboot target and reboot
-	exec $SUDO sh -c "grub-reboot '$ENTRY_TITLE' && reboot"
+	$SUDO sh -c "grub-reboot '$ENTRY_TITLE' && reboot"
 
 fi

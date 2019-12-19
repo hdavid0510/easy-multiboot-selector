@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=Boot to Windows
 Keywords=windows;boot;
-Exec=/usr/bin/bootwindows
+Exec=/usr/bin/boot2 "Windows"
 Type=Application
 StartupNotify=true
 Actions=New
